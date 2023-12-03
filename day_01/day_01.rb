@@ -1,5 +1,5 @@
 module Day_01
-  INPUT_FILENAME = "day_01_input.txt"
+  INPUT_FILENAME = "day_01/day_01_input.txt"
 
   module_function
 
@@ -61,8 +61,3 @@ module Day_01
     sum_calibration_values_part2(read_input_file(INPUT_FILENAME))
   end
 end
-
-puts Day_01.solve_part_one
-# Result : 54597
-puts Day_01.solve_part_two
-# Result : 54504
