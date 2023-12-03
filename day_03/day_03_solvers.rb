@@ -1,6 +1,6 @@
 require_relative 'day_03'
 
 puts Day_03.solve_part_one
-# Result : 54597
+# Result : 4361
 # puts Day_03.solve_part_two
-# Result : 54504
+# Result : x

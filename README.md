@@ -13,6 +13,7 @@ Pour chaque jour, j'ai attribué une note de difficulté basée sur mon expérie
 
 - Jour 1 : ⭐⭐☆☆☆
 - Jour 2 : ⭐⭐☆☆☆
+- Jour 3 : ⭐⭐⭐⭐⭐
 
 ## Installation et Exécution
 
