@@ -11,7 +11,7 @@ Un répertoire spec contenant les tests, avec un répertoire par jour à l'inté
 
 Pour chaque jour, j'ai attribué une note de difficulté basée sur mon expérience personnelle, sur une échelle de 1 à 5 étoiles :
 
-- Jour 1 : ⭐⭐☆☆☆
+- Jour 1 : ⭐⭐⭐☆☆
 - Jour 2 : ⭐⭐☆☆☆
 - Jour 3 : ⭐⭐⭐⭐⭐
 

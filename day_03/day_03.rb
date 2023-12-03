@@ -30,7 +30,6 @@ module Day_03
         chars_right_nums = line[position + partnum.length]
         chars_below_nums = input[line_number + 1].slice(position - 1..position + partnum.length)
         all_chars_around_num = chars_above_nums + chars_left_nums + chars_right_nums + chars_below_nums
-        puts all_chars_around_num.scan(/[^\.]/)
         valid_parts_numbers.push partnum.to_i unless all_chars_around_num.scan(/[^\.\d]/).empty?
       end
     end
