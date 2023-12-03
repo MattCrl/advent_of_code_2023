@@ -4,16 +4,8 @@ Ce projet contient mes solutions pour l'événement [Advent of Code 2023](https:
 
 ## Structure du Projet
 
-Le projet est organisé comme suit :
-advent_of_code_2023/
-├── day01/
-│ ├── day01.rb
-│ ├── day01_solver.rb 
-│ ├── day01_input.txt
-├── day02/
-├── spec/
-
 Un répertoire par jour, avec un module Ruby dédié, un fichier "solver" qui appelle le module et renvoie le résultat, et un fichier d'input.
+Un répertoire spec contenant les tests, avec un répertoire par jour à l'intérieur.
 
 ## Note de Difficulté
 
