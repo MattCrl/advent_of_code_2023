@@ -24,13 +24,13 @@ module Day_03
     valid_parts_numbers = []
     input.each_with_index do |line, line_number|
       nums_and_positions = line.enum_for(:scan, /[\d]+/).map { [Regexp.last_match.to_s, Regexp.last_match.begin(0)] }
-      nums_and_positions.each do |partnum, position|
-        chars_above_nums = input[line_number - 1].slice(position - 1..position + partnum.length)
+      nums_and_positions.each do |current_number, position|
+        chars_above_nums = input[line_number - 1].slice(position - 1..position + current_number.length)
         chars_left_nums  = line[position - 1]
-        chars_right_nums = line[position + partnum.length]
-        chars_below_nums = input[line_number + 1].slice(position - 1..position + partnum.length)
+        chars_right_nums = line[position + current_number.length]
+        chars_below_nums = input[line_number + 1].slice(position - 1..position + current_number.length)
         all_chars_around_num = chars_above_nums + chars_left_nums + chars_right_nums + chars_below_nums
-        valid_parts_numbers.push partnum.to_i unless all_chars_around_num.scan(/[^\.\d]/).empty?
+        valid_parts_numbers.push current_number.to_i unless all_chars_around_num.scan(/[^\.\d]/).empty?
       end
     end
     valid_parts_numbers.sum
@@ -54,31 +54,72 @@ module Day_03
     stars_positions_and_their_adj_numbers = {}
     input.each_with_index do |line, line_number|
       nums_and_positions = line.enum_for(:scan, /[\d]+/).map { [Regexp.last_match.to_s, Regexp.last_match.begin(0)] }
-      nums_and_positions.each do |partnum, position|
-        chars_above_nums = input[line_number - 1].slice(position - 1..position + partnum.length)
+      nums_and_positions.each do |current_number, position|
+        chars_above_nums = input[line_number - 1].slice(position - 1..position + current_number.length)
         chars_left_nums  = line[position - 1]
-        chars_below_nums = input[line_number + 1].slice(position - 1..position + partnum.length)
-        chars_right_nums = line[position + partnum.length]
+        chars_below_nums = input[line_number + 1].slice(position - 1..position + current_number.length)
+        chars_right_nums = line[position + current_number.length]
         all_chars_around_num = chars_above_nums + chars_left_nums + chars_below_nums + chars_right_nums
         if all_chars_around_num.scan(/[\*]/).length > 0
-          puts all_chars_around_num
-          # Ce numéro a une * autour de lui
-          # Il faudrait que j'enregistre dans mon Hash la position de l'étoile en clé, et mettre le num (valeur) dans un tableau associé à la clé
+          x = line_number
+          y = position
+        
+          # This current number has a * around it
+          # I need to save in a Hash the star position as the key, and create an Array of every current_number associated to this star
+          # Then later, I'll filter this Hash keeping only key/values where value is an Array of exactly length == 2 (star associated to 2 numbers only)
           if chars_above_nums.scan(/[\*]/).length > 0
+            x -= 1
+            portion = all_chars_around_num[0..current_number.length+2]
+            index = portion.index('*')
+            index_in_line = position + index - 1
+            y = index_in_line
+            if stars_positions_and_their_adj_numbers["#{x}:#{y}"].nil?
+              stars_positions_and_their_adj_numbers["#{x}:#{y}"] = [current_number]
+            else
+              stars_positions_and_their_adj_numbers["#{x}:#{y}"] << current_number
+            end
           end
+
           if chars_left_nums.scan(/[\*]/).length > 0
+            y = position - 1
+            if stars_positions_and_their_adj_numbers["#{x}:#{y}"].nil?
+              stars_positions_and_their_adj_numbers["#{x}:#{y}"] = [current_number]
+            else
+              stars_positions_and_their_adj_numbers["#{x}:#{y}"] << current_number
+            end
           end
+
           if chars_right_nums.scan(/[\*]/).length > 0
+            y = position + current_number.length
+            if stars_positions_and_their_adj_numbers["#{x}:#{y}"].nil?
+              stars_positions_and_their_adj_numbers["#{x}:#{y}"] = [current_number]
+            else
+              stars_positions_and_their_adj_numbers["#{x}:#{y}"] << current_number
+            end
           end
+
           if chars_below_nums.scan(/[\*]/).length > 0
-            puts chars_below_nums.index('*')
+            x += 1
+            portion = all_chars_around_num[(all_chars_around_num.length/2)..-2]
+            index = portion.index('*')
+            index_in_line = position + index - 1
+            y = index_in_line
+            if stars_positions_and_their_adj_numbers["#{x}:#{y}"].nil?
+              stars_positions_and_their_adj_numbers["#{x}:#{y}"] = [current_number]
+            else
+              stars_positions_and_their_adj_numbers["#{x}:#{y}"] << current_number
+            end
           end
         end
-          
       end
-
     end
-    puts "result"
+    stars_positions_and_their_adj_numbers = stars_positions_and_their_adj_numbers.filter {|k, v| v.length == 2}
+    total = 0
+    stars_positions_and_their_adj_numbers.map {|k, v|
+      v = v.map &:to_i
+      total += v.reduce(:*)
+    }
+    total
   end
 
   def solve_part_two
