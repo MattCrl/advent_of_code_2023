@@ -14,6 +14,7 @@ Pour chaque jour, j'ai attribué une note de difficulté basée sur mon expérie
 - Jour 1 : ⭐⭐⭐☆☆
 - Jour 2 : ⭐⭐☆☆☆
 - Jour 3 : ⭐⭐⭐⭐⭐
+- Jour 4 : 
 
 ## Installation et Exécution
 
@@ -34,7 +35,7 @@ bundle install
 Pour exécuter les solutions, naviguez dans le dossier du jour correspondant et exécutez le script solver 
 
 ```bash
-ruby day01/day01_solver.rb
+ruby day_01/day_01_solver.rb
 ```
 
 ### Exécuter les Tests
