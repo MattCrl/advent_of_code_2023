@@ -68,7 +68,7 @@ module Day_05
           # && current_location < source_range + length_range
           # If it's between, then it mean the location will change, else it won't change so I keep the current_location unchanged
           # If there's a match, there's always be only ONE possible match, that's why I use .find, it only returns the first match
-          new_location = all_ranges_of_current_map.each_slice(3).find { |(dest_range, source_range, length_range)| current_location >= source_range && current_location < source_range + length_range }
+          new_location = all_ranges_of_current_map.each_slice(3).find { |dest_range, source_range, length_range| current_location >= source_range && current_location < source_range + length_range }
           # Calculate the new location is easy :
           # convert the current_location by substracting the source_range (new_location[1]), and by adding to destination_range (new_location[0])
           new_location ? current_location - new_location[1] + new_location[0] : current_location
@@ -83,27 +83,56 @@ module Day_05
   end
 
   # Part 2
-  def lowest_location_for_seed_p2
+  def p2 
     input = File.read(FINAL_INPUT_FILENAME)
     seeds, *maps = input.split("\n\n")
-    seeds = seeds.split[1..].map &:to_i
-    seeds_ranges = []
-    seeds.each_slice(2) { |a, b| seeds_ranges << (a..a+b) }
-    maps = maps.map { _1.split.map(&:to_i)[2..] }
-    final_locations_for_each_seed = []
-    seeds_ranges.map { |seed_range| 
-      seed_range.each do |seed|
-        final_locations_for_each_seed << maps.reduce(seed) do |current_location, all_ranges_of_current_map|
-          new_location = all_ranges_of_current_map.each_slice(3).find { |(dest_range, source_range, length_range)| current_location >= source_range && current_location < source_range + length_range }
-          new_location ? current_location - new_location[1] + new_location[0] : current_location
-        end
-      end
+    seeds = seeds.split[1..].map(&:to_i).each_slice(2).map { |seed_number, seed_range_size| seed_number..seed_number + seed_range_size }
+    $maps = maps.map { |m| 
+      m.split.map(&:to_i)[2..].each_slice(3).map { |dest_range, source_range, length_range|
+        [source_range..source_range + length_range, dest_range - source_range] 
+      } 
     }
-    final_locations_for_each_seed.min
+
+    seeds.flat_map { convSeeds(_1, 0) }.map(&:begin).min
+  end
+
+  def convSeeds(seeds, i)
+    return [seeds] unless $maps[i]
+
+    conv = $maps[i].find { seeds.intersect?(_1[0]) }
+    newseeds = conv ? [(seeds & conv[0]) + conv[1], *seeds.split(conv[0])] : [seeds]
+    newseeds.flat_map { convSeeds(_1, i + 1) }
   end
 
   def solve_part_two
-    lowest_location_for_seed_p2
+    p2
   end
   
+end
+
+class Range
+  def intersect?(other)
+      !(self.max < other.begin || other.max < self.begin)
+  end
+
+  def intersection(other)
+      return nil unless intersect?(other)
+
+      [self.begin, other.begin].max..[self.max, other.max].min
+  end
+
+  def empty?
+      self.size.zero?
+  end
+
+  def split(other)
+      return nil unless s = self & other
+
+      [self.begin...s.begin, self.max...s.max].filter { |v| !v.empty? }
+  end
+
+  def +(other)
+      self.begin + other..max + other
+  end
+  alias & intersection
 end
