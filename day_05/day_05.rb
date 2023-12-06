@@ -4,236 +4,6 @@ module Day_05
 
   module_function
 
-  # Reading inputs
-  def read_input_file(filename)
-    return nil unless File.exists?(filename)
-    file_data = File.read(filename)
-    file_data.split("\n")
-  end
-
-  # Part 1
-  def lowest_location_number(input)
-    return nil if input.nil?
-    # Seeds
-    seeds = input[0].gsub('seeds: ', '').split.map &:to_i
-    match = {}
-    i = 1
-    seeds.each do |seed|
-      match[i] = seed
-      i += 1
-    end
-    puts match
-
-    # Seeds to soil
-    seeds_to_soil = []
-    soil_section = false
-    input.each do |line|
-      if line.strip == 'seed-to-soil map:'
-        soil_section = true
-        next
-      end
-      break if line.strip.empty? && soil_section
-      seeds_to_soil << line.split.map(&:to_i) if soil_section
-    end
-    mapping = {}
-    (0..99).each do |num|
-      mapping[num] = num
-    end
-    seeds_to_soil.each do |toto|
-      a = toto[0]
-      b = toto[1]
-      toto[2].times do
-        mapping[b] = a
-        a += 1
-        b += 1
-      end
-    end
-    match.each do |k, v|
-      match[k] = mapping[v]
-    end
-    puts match
-
-    # Soil to Fertilizer
-    soil_to_fertilizer = []
-    fertilizer_section = false
-    input.each do |line|
-      if line.strip == 'soil-to-fertilizer map:'
-        fertilizer_section = true
-        next
-      end
-      break if line.strip.empty? && fertilizer_section
-      soil_to_fertilizer << line.split.map(&:to_i) if fertilizer_section
-    end
-    puts "soil_to_fertilizer #{soil_to_fertilizer}"
-    mapping = {}
-    (0..99).each do |num|
-      mapping[num] = num
-    end
-    soil_to_fertilizer.each do |toto|
-      a = toto[0]
-      b = toto[1]
-      toto[2].times do
-        mapping[b] = a
-        a += 1
-        b += 1
-      end
-    end
-    match.each do |k, v|
-      match[k] = mapping[v]
-    end
-    puts match
-
-    # Fertilizer to Water
-    fertilizer_to_water = []
-    water_section = false
-    input.each do |line|
-      if line.strip == 'fertilizer-to-water map:'
-        water_section = true
-        next
-      end
-      break if line.strip.empty? && water_section
-      fertilizer_to_water << line.split.map(&:to_i) if water_section
-    end
-    mapping = {}
-    (0..99).each do |num|
-      mapping[num] = num
-    end
-    fertilizer_to_water.each do |toto|
-      a = toto[0]
-      b = toto[1]
-      toto[2].times do
-        mapping[b] = a
-        a += 1
-        b += 1
-      end
-    end
-    match.each do |k, v|
-      match[k] = mapping[v]
-    end
-    puts match
-
-    # Water to Light
-    water_to_light = []
-    light_section = false
-    input.each do |line|
-      if line.strip == 'water-to-light map:'
-        light_section = true
-        next
-      end
-      break if line.strip.empty? && light_section
-      water_to_light << line.split.map(&:to_i) if light_section
-    end
-    mapping = {}
-    (0..99).each do |num|
-      mapping[num] = num
-    end
-    water_to_light.each do |toto|
-      a = toto[0]
-      b = toto[1]
-      toto[2].times do
-        mapping[b] = a
-        a += 1
-        b += 1
-      end
-    end
-    match.each do |k, v|
-      match[k] = mapping[v]
-    end
-    puts match
-
-    # Light to Temperature
-    light_to_temperature = []
-    temperature_section = false
-    input.each do |line|
-      if line.strip == 'light-to-temperature map:'
-        temperature_section = true
-        next
-      end
-      break if line.strip.empty? && temperature_section
-      light_to_temperature << line.split.map(&:to_i) if temperature_section
-    end
-    mapping = {}
-    (0..99).each do |num|
-      mapping[num] = num
-    end
-    light_to_temperature.each do |toto|
-      a = toto[0]
-      b = toto[1]
-      toto[2].times do
-        mapping[b] = a
-        a += 1
-        b += 1
-      end
-    end
-    match.each do |k, v|
-      match[k] = mapping[v]
-    end
-    puts match
-
-    # Temperature to Humidity
-    temperature_to_humidity = []
-    humidity_section = false
-    input.each do |line|
-      if line.strip == 'temperature-to-humidity map:'
-        humidity_section = true
-        next
-      end
-      break if line.strip.empty? && humidity_section
-      temperature_to_humidity << line.split.map(&:to_i) if humidity_section
-    end
-    mapping = {}
-    (0..99).each do |num|
-      mapping[num] = num
-    end
-    temperature_to_humidity.each do |toto|
-      a = toto[0]
-      b = toto[1]
-      toto[2].times do
-        mapping[b] = a
-        a += 1
-        b += 1
-      end
-    end
-    match.each do |k, v|
-      match[k] = mapping[v]
-    end
-    puts match
-
-    # Humidity to Location
-    humidity_to_location = []
-    location_section = false
-    input.each do |line|
-      if line.strip == 'humidity-to-location map:'
-        location_section = true
-        next
-      end
-      break if line.strip.empty? && location_section
-      humidity_to_location << line.split.map(&:to_i) if location_section
-    end
-    mapping = {}
-    (0..99).each do |num|
-      mapping[num] = num
-    end
-    humidity_to_location.each do |toto|
-      a = toto[0]
-      b = toto[1]
-      toto[2].times do
-        mapping[b] = a
-        a += 1
-        b += 1
-      end
-    end
-    match.each do |k, v|
-      match[k] = mapping[v]
-    end
-    puts match
-    puts match.values.min
-  end
-
-  def solve_part_one
-    lowest_location_number(read_input_file(FINAL_INPUT_FILENAME))
-  end
-
   # Description de l'input :
   # Ligne 1 : Numéros des graines à planter 
   # seed-to-soil map : X lignes de 3 valeurs :
@@ -281,10 +51,59 @@ module Day_05
       # seed 55 correspond au soil 57
       # seed 13 correspond au soil 13
 
+  def lowest_location_for_seed
+    input = File.read(FINAL_INPUT_FILENAME)
+    seeds, *maps = input.split("\n\n")
+    seeds = seeds.split[1..].map &:to_i
+    # Each "maps" contains "x-to-x", "map:", then all the integers values
+    # By mapping all maps and spliting them, and only keeping [2..], I remove the useless "x-to-x", "map:", and keep only every integers
+    # Then, later I can map these Integers 3 by 3 (each_slice(3)) to get the values in the correct ordre
+    maps = maps.map { _1.split.map(&:to_i)[2..] }
+
+    final_locations_for_each_seed = seeds.map do |seed|
+        maps.reduce(seed) do |current_location, all_ranges_of_current_map|
+          # Here I check for each seed, for each slice of 3 Int (all_ranges_of_current_map : dest, range, length) in maps Array :
+          # If the current_location is located BETWEEN the given range so :
+          # If current_location >= source_range
+          # && current_location < source_range + length_range
+          # If it's between, then it mean the location will change, else it won't change so I keep the current_location unchanged
+          # If there's a match, there's always be only ONE possible match, that's why I use .find, it only returns the first match
+          new_location = all_ranges_of_current_map.each_slice(3).find { |(dest_range, source_range, length_range)| current_location >= source_range && current_location < source_range + length_range }
+          # Calculate the new location is easy :
+          # convert the current_location by substracting the source_range (new_location[1]), and by adding to destination_range (new_location[0])
+          new_location ? current_location - new_location[1] + new_location[0] : current_location
+        end
+    end
+    # Returns the lowest location among all seeds final locations
+    final_locations_for_each_seed.min
+  end
+
+  def solve_part_one
+    lowest_location_for_seed
+  end
 
   # Part 2
+  def lowest_location_for_seed_p2
+    input = File.read(FINAL_INPUT_FILENAME)
+    seeds, *maps = input.split("\n\n")
+    seeds = seeds.split[1..].map &:to_i
+    seeds_ranges = []
+    seeds.each_slice(2) { |a, b| seeds_ranges << (a..a+b) }
+    maps = maps.map { _1.split.map(&:to_i)[2..] }
+    final_locations_for_each_seed = []
+    seeds_ranges.map { |seed_range| 
+      seed_range.each do |seed|
+        final_locations_for_each_seed << maps.reduce(seed) do |current_location, all_ranges_of_current_map|
+          new_location = all_ranges_of_current_map.each_slice(3).find { |(dest_range, source_range, length_range)| current_location >= source_range && current_location < source_range + length_range }
+          new_location ? current_location - new_location[1] + new_location[0] : current_location
+        end
+      end
+    }
+    final_locations_for_each_seed.min
+  end
+
   def solve_part_two
-    nil
+    lowest_location_for_seed_p2
   end
   
 end

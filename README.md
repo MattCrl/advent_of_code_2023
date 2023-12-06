@@ -19,8 +19,8 @@ Pour chaque jour, j'ai attribué une note de difficulté basée sur mon expérie
 - Jour 3 (partie 2) : ⭐⭐⭐⭐⭐
 - Jour 4 (partie 1) : ⭐⭐☆☆☆
 - Jour 4 (partie 2) : ⭐⭐⭐☆☆
-- Jour 5 (partie 1) :
-- Jour 5 (partie 2) :
+- Jour 5 (partie 1) : ⭐⭐⭐⭐⭐ (aide recherchée car bloqué)
+- Jour 5 (partie 2) : 
 
 ## Installation et Exécution
 
