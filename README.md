@@ -23,6 +23,9 @@ Pour chaque jour, j'ai attribué une note de difficulté basée sur mon expérie
 - Jour 5 (partie 2) : ⭐⭐⭐⭐⭐ (aide recherchée car bloqué, ma solution fonctionnait, mais il aurait fallut que je laisse le PC tourner des heures pour avoir le résultat)
 - Jour 6 (partie 1) : ⭐☆☆☆☆
 - Jour 6 (partie 2) : ⭐☆☆☆☆
+- Jour 7 (partie 1) : ⭐⭐☆☆☆
+- Jour 7 (partie 2) : ⭐⭐⭐☆☆
+
 
 ## Installation et Exécution
 
