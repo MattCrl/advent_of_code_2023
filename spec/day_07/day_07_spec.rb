@@ -1,4 +1,4 @@
-require_relative "../../day_07/day_07"
+require_relative "../../src/day_07/day_07"
 
 RSpec.describe Day_07 do
   it "test part_one with samples" do

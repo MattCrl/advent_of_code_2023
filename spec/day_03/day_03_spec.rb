@@ -1,4 +1,4 @@
-require_relative "../../day_03/day_03"
+require_relative "../../src/day_03/day_03"
 RSpec.describe Day_03 do
   it "test sum_parts_engine_schematic with samples" do
     file_data = Day_03.read_input_file("spec/day_03/day_03_samples_part1.txt")

@@ -1,4 +1,4 @@
-require_relative '../../day_01/day_01'
+require_relative '../../src/day_01/day_01'
 
 RSpec.describe Day_01 do
   it "test sum_calibration_values with samples" do

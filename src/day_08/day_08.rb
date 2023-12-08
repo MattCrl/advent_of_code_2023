@@ -1,6 +1,6 @@
 module Day_08
-  SAMPLES_FILENAME  = "day_08/day_08_samples.txt"
-  INPUT_FILENAME    = "day_08/day_08_input.txt"
+  SAMPLES_FILENAME  = "src/day_08/day_08_samples.txt"
+  INPUT_FILENAME    = "src/day_08/day_08_input.txt"
   START   = "AAA"
   FINISH  = "ZZZ"
 

@@ -1,6 +1,6 @@
 module Day_05
-  SAMPLES_INPUT_FILENAME  = "day_05/day_05_samples_input.txt"
-  FINAL_INPUT_FILENAME    = "day_05/day_05_final_input.txt"
+  SAMPLES_INPUT_FILENAME  = "src/day_05/day_05_samples_input.txt"
+  FINAL_INPUT_FILENAME    = "src/day_05/day_05_final_input.txt"
 
   module_function
 

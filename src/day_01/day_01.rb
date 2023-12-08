@@ -1,5 +1,5 @@
 module Day_01
-  INPUT_FILENAME = "day_01/day_01_input.txt"
+  INPUT_FILENAME = "src/day_01/day_01_input.txt"
 
   module_function
 

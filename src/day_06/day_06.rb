@@ -1,8 +1,8 @@
 module Day_06
   require 'benchmark'
 
-  SAMPLES_FILENAME  = "day_06/day_06_samples.txt"
-  INPUT_FILENAME    = "day_06/day_06_input.txt"
+  SAMPLES_FILENAME  = "src/day_06/day_06_samples.txt"
+  INPUT_FILENAME    = "src/day_06/day_06_input.txt"
 
   module_function
 
