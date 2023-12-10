@@ -25,6 +25,7 @@ Pour chaque jour, j'ai attribué une note de difficulté basée sur mon expérie
 - Jour 6 (partie 2) : ⭐☆☆☆☆
 - Jour 7 (partie 1) : ⭐⭐☆☆☆
 - Jour 7 (partie 2) : ⭐⭐⭐☆☆
+- Jour 8 (partie 1) : ⭐⭐☆☆☆
 
 
 ## Installation et Exécution
