@@ -4,8 +4,8 @@ module Day_09
 
   module_function
 
-  def part_one
-    data = File.read(INPUT_FILENAME).split("\n")
+  def part_one(file)
+    data = File.read(file).split("\n")
     total = 0
     data.map { |line|
       my_arr = []
@@ -15,7 +15,7 @@ module Day_09
         total += a[-1]
       }
     }
-    puts total
+    total
   end
 
   def subtract_consecutive_elements(array)
@@ -27,8 +27,8 @@ module Day_09
     result
   end
 
-  def part_two
-    data = File.read(INPUT_FILENAME).split("\n")
+  def part_two(file)
+    data = File.read(file).split("\n")
     total = 0
     data.map { |line|
       my_arr = []
@@ -42,7 +42,23 @@ module Day_09
         end
       end
     }
-    puts total
+    total
+  end
+
+  def solve_part_one_samples
+    part_one(SAMPLES_FILENAME)
+  end
+
+  def solve_part_two_samples
+    part_two(SAMPLES_FILENAME)
+  end
+
+  def solve_part_one_input
+    part_one(INPUT_FILENAME)
+  end
+
+  def solve_part_two_input
+    part_two(INPUT_FILENAME)
   end
 end
 
